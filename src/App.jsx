@@ -4,6 +4,7 @@ const NEXFLOW_EMAIL = "saroareee@gmail.com";
 const NEXFLOW_WHATSAPP = "8801917559574";
 const NEXFLOW_GITHUB = "https://github.com/saroareee";
 const NEXFLOW_LINKEDIN = "https://www.linkedin.com/feed/";
+const NEXFLOW_YOUTUBE = "https://www.youtube.com/@golamsaroar6470";
 
 const FAQ_DATA = [
   {
@@ -703,6 +704,24 @@ export default function App() {
           </div>
         </div>
       </section>
+
+{/* Footer */}
+      <footer className="bg-gray-950 border-t border-gray-800 py-10 px-6 text-center">
+        <div className="max-w-7xl mx-auto flex flex-col md:flex-row justify-between items-center gap-4">
+          <p className="text-gray-400 text-sm">
+            © {new Date().getFullYear()} Md Golam Saroar — NexFlow AI. All rights reserved.
+          </p>
+          <div className="flex gap-6 text-gray-400 text-sm">
+            <a href={NEXFLOW_GITHUB} target="_blank" rel="noopener noreferrer" className="hover:text-blue-400 transition">GitHub</a>
+            <a href={NEXFLOW_LINKEDIN} target="_blank" rel="noopener noreferrer" className="hover:text-blue-400 transition">LinkedIn</a>
+            <a href={`https://wa.me/${NEXFLOW_WHATSAPP}`} target="_blank" rel="noopener noreferrer" className="hover:text-blue-400 transition">WhatsApp</a>
+            <a href={NEXFLOW_YOUTUBE} target="_blank" rel="noopener noreferrer" className="hover:text-blue-400 transition">YouTube</a>
+          </div>
+        </div>
+      </footer>
+
+
+
 
       <FloatingChatbot />
     </div>
