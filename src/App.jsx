@@ -164,6 +164,7 @@ function FloatingChatbot() {
 export default function App() {
   const [formData, setFormData] = useState({ name: '', email: '', phone: '', project: '' });
   const [formStatus, setFormStatus] = useState('');
+  const [mobileMenuOpen, setMobileMenuOpen] = useState(false);
 
   const handleOrderSubmit = async (e) => {
     e.preventDefault();
@@ -197,31 +198,66 @@ export default function App() {
     <div className="bg-slate-900 text-slate-300 min-h-screen">
     
  <nav className="fixed w-full top-0 z-50 bg-blue-400 shadow-lg">
-  <div className="max-w-7xl mx-auto w-full flex justify-between items-center h-20">
-    
-    {/* Logo - container এর left edge */}
-    <div className="flex items-center bg-white rounded-xl px-3 py-1.5 shadow-md">
-      <img 
-        src="/logo.png" 
-        alt="NexFlow Logo" 
-        className="h-12 w-auto object-contain"
-      />
-    </div>
+        <div className="max-w-7xl mx-auto w-full flex justify-between items-center h-20 px-4">
 
-    {/* Menu Items */}
-    <div className="hidden md:flex items-center gap-6 text-base font-bold text-white">
-      <a href="#about" className="hover:text-blue-100 transition">About</a>
-      <a href="#experience" className="hover:text-blue-100 transition">Experience</a>
-      <a href="#services" className="hover:text-blue-100 transition">Services</a>
-      <a href="#techstack" className="hover:text-blue-100 transition">Tech Stack</a>
-      <a href="#projects" className="hover:text-blue-100 transition">Projects</a>
-      <a href="#clients" className="hover:text-blue-100 transition">Clients</a>
-      <a href="#contact" className="hover:text-blue-100 transition">Contact</a>
-      <a href="#order" className="bg-white hover:bg-slate-100 px-6 py-2 rounded-full text-blue-600 font-bold transition shadow">Order Now</a>
-    </div>
-    
-  </div>
-</nav>
+          {/* Logo */}
+          <div className="flex items-center bg-white rounded-xl px-3 py-1.5 shadow-md">
+            <img
+              src="/logo.png"
+              alt="NexFlow Logo"
+              className="h-12 w-auto object-contain"
+            />
+          </div>
+
+          {/* Desktop Menu */}
+          <div className="hidden md:flex items-center gap-6 text-base font-bold text-white">
+            <a href="#about" className="hover:text-blue-100 transition">About</a>
+            <a href="#experience" className="hover:text-blue-100 transition">Experience</a>
+            <a href="#services" className="hover:text-blue-100 transition">Services</a>
+            <a href="#techstack" className="hover:text-blue-100 transition">Tech Stack</a>
+            <a href="#projects" className="hover:text-blue-100 transition">Projects</a>
+            <a href="#clients" className="hover:text-blue-100 transition">Clients</a>
+            <a href="#contact" className="hover:text-blue-100 transition">Contact</a>
+            <a href="#order" className="bg-white hover:bg-slate-100 px-6 py-2 rounded-full text-blue-600 font-bold transition shadow">Order Now</a>
+          </div>
+
+          {/* Mobile Hamburger Button */}
+          <button
+            onClick={() => setMobileMenuOpen(!mobileMenuOpen)}
+            className="md:hidden text-white p-2"
+            aria-label="Toggle menu"
+          >
+            <svg className="w-8 h-8" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+              {mobileMenuOpen ? (
+                <path strokeLinecap="round" strokeLinejoin="round" strokeWidth="2" d="M6 18L18 6M6 6l12 12" />
+              ) : (
+                <path strokeLinecap="round" strokeLinejoin="round" strokeWidth="2" d="M4 6h16M4 12h16M4 18h16" />
+              )}
+            </svg>
+          </button>
+        </div>
+
+        {/* Mobile Dropdown Menu */}
+        {mobileMenuOpen && (
+          <div className="md:hidden bg-blue-500 px-6 py-4 flex flex-col gap-4 text-white font-bold shadow-lg">
+            <a href="#about" onClick={() => setMobileMenuOpen(false)} className="hover:text-blue-100 transition">About</a>
+            <a href="#experience" onClick={() => setMobileMenuOpen(false)} className="hover:text-blue-100 transition">Experience</a>
+            <a href="#services" onClick={() => setMobileMenuOpen(false)} className="hover:text-blue-100 transition">Services</a>
+            <a href="#techstack" onClick={() => setMobileMenuOpen(false)} className="hover:text-blue-100 transition">Tech Stack</a>
+            <a href="#projects" onClick={() => setMobileMenuOpen(false)} className="hover:text-blue-100 transition">Projects</a>
+            <a href="#clients" onClick={() => setMobileMenuOpen(false)} className="hover:text-blue-100 transition">Clients</a>
+            <a href="#contact" onClick={() => setMobileMenuOpen(false)} className="hover:text-blue-100 transition">Contact</a>
+            <a
+              href="#order"
+              onClick={() => setMobileMenuOpen(false)}
+              className="bg-white text-blue-600 px-6 py-2 rounded-full font-bold text-center shadow"
+            >
+              Order Now
+            </a>
+          </div>
+        )}
+      </nav>
+
 {/* Hero Section */}
 <header 
   id="about" 
@@ -243,10 +279,10 @@ export default function App() {
   <div className="relative z-10 max-w-7xl mx-auto flex flex-col md:flex-row items-center gap-16 w-full">
     
     <div className="flex-1">
-      <h1 className="text-6xl font-bold mb-6 leading-tight animate-dim-light text-blue-500">
+      <h1 className="text-4xl md:text-6xl font-bold mb-6 leading-tight animate-dim-light text-blue-400">
         Automate the Future with AI
       </h1>
-      <p className="text-gray-200 mb-8 max-w-lg text-lg">
+      <p className="text-gray-50 mb-8 max-w-lg text-lg">
         Md Golam Saroar, an AI Automation Engineer, building intelligent systems for scalable results.
       </p>
       <a href="#order" className="inline-block px-8 py-3 bg-blue-600 text-white font-bold rounded-lg hover:bg-blue-700 transition shadow-lg">
@@ -470,7 +506,7 @@ export default function App() {
 </section>
 
      {/* Featured Projects Section */}
-<section id="projects" className="py-24 px-6 bg-gray-950 text-white">
+<section id="projects" className="py-24 px-6 bg-gray-600 text-white">
   <div className="max-w-7xl mx-auto">
     <h2 className="text-4xl font-bold text-center mb-16">Featured Projects</h2>
 
@@ -712,10 +748,10 @@ export default function App() {
             © {new Date().getFullYear()} Md Golam Saroar — NexFlow AI. All rights reserved.
           </p>
           <div className="flex gap-6 text-gray-400 text-sm">
-            <a href={NEXFLOW_GITHUB} target="_blank" rel="noopener noreferrer" className="hover:text-blue-400 transition">GitHub</a>
+            <a href={NEXFLOW_YOUTUBE} target="_blank" rel="noopener noreferrer" className="hover:text-blue-400 transition">YouTube</a>
             <a href={NEXFLOW_LINKEDIN} target="_blank" rel="noopener noreferrer" className="hover:text-blue-400 transition">LinkedIn</a>
             <a href={`https://wa.me/${NEXFLOW_WHATSAPP}`} target="_blank" rel="noopener noreferrer" className="hover:text-blue-400 transition">WhatsApp</a>
-            <a href={NEXFLOW_YOUTUBE} target="_blank" rel="noopener noreferrer" className="hover:text-blue-400 transition">YouTube</a>
+            <a href={NEXFLOW_GITHUB} target="_blank" rel="noopener noreferrer" className="hover:text-blue-400 transition">GitHub</a>
           </div>
         </div>
       </footer>
