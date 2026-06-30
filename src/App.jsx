@@ -214,6 +214,7 @@ export default function App() {
       <a href="#services" className="hover:text-blue-100 transition">Services</a>
       <a href="#techstack" className="hover:text-blue-100 transition">Tech Stack</a>
       <a href="#projects" className="hover:text-blue-100 transition">Projects</a>
+      <a href="#clients" className="hover:text-blue-100 transition">Clients</a>
       <a href="#contact" className="hover:text-blue-100 transition">Contact</a>
       <a href="#order" className="bg-white hover:bg-slate-100 px-6 py-2 rounded-full text-blue-600 font-bold transition shadow">Order Now</a>
     </div>
@@ -582,6 +583,86 @@ export default function App() {
     </div>
   </div>
 </section>
+
+
+{/* Clients Section */}
+      <section id="clients" className="py-24 px-6 bg-gray-400 text-white">
+        <div className="max-w-7xl mx-auto">
+          <h2 className="text-4xl font-bold mb-4 text-center text-gray-900">Clients I've Worked With</h2>
+          <p className="text-gray-50 text-center mb-16">Real businesses, real automations, real results</p>
+
+          <div className="grid md:grid-cols-2 gap-8">
+
+            <div className="bg-gray-50 p-8 rounded-3xl border border-gray-200 hover:border-blue-500/50 transition-all duration-300 hover:-translate-y-2 hover:shadow-xl flex flex-col h-full">
+              <div className="flex items-center gap-4 mb-6">
+                <div className="w-14 h-14 rounded-2xl bg-blue-600 flex items-center justify-center text-2xl font-bold text-white">
+                  E
+                </div>
+                <div>
+                  <h3 className="text-xl font-bold text-gray-900">EstimateIQ.com</h3>
+                  <p className="text-sm text-gray-500">SaaS / Property Tech</p>
+                </div>
+              </div>
+              <p className="text-gray-600 text-sm leading-relaxed mb-6 flex-grow">
+                Built a fully automated AI video pipeline — script breakdown, AI-generated voiceover, stock footage matching, and rendering, with the finished video auto-posted to Facebook on a daily schedule. Replaced the entire manual video creation and social posting process.
+              </p>
+              <div className="flex flex-wrap gap-2 mb-6">
+                <span className="px-3 py-1 bg-blue-50 text-blue-600 text-xs rounded-full border border-blue-200">AI Video Generation</span>
+                <span className="px-3 py-1 bg-blue-50 text-blue-600 text-xs rounded-full border border-blue-200">Facebook Automation</span>
+              </div>
+              <a
+                href="https://getestimateiq.com/"
+                target="_blank"
+                rel="noopener noreferrer"
+                className="inline-flex items-center text-blue-600 hover:text-blue-700 text-sm font-semibold transition-colors"
+              >
+                Visit Website
+                <svg className="w-4 h-4 ml-1" fill="none" stroke="currentColor" viewBox="0 0 24 24" xmlns="http://www.w3.org/2000/svg">
+                  <path strokeLinecap="round" strokeLinejoin="round" strokeWidth="2" d="M10 6H6a2 2 0 00-2 2v10a2 2 0 002 2h10a2 2 0 002-2v-4M14 4h6m0 0v6m0-6L10 14"></path>
+                </svg>
+              </a>
+            </div>
+
+            <div className="bg-gray-50 p-8 rounded-3xl border border-gray-200 hover:border-pink-500/50 transition-all duration-300 hover:-translate-y-2 hover:shadow-xl flex flex-col h-full">
+              <div className="flex items-center gap-4 mb-6">
+                <div className="w-14 h-14 rounded-2xl bg-pink-500 flex items-center justify-center text-2xl">
+                  🎂
+                </div>
+                <div>
+                  <h3 className="text-xl font-bold text-gray-900">Ira's Homemade Cake</h3>
+                  <p className="text-sm text-gray-500">Food & Beverage / Small Business</p>
+                </div>
+              </div>
+              <p className="text-gray-600 text-sm leading-relaxed mb-6 flex-grow">
+                Built a complete WhatsApp ordering bot powered by an AI agent — handling customer orders, payment confirmation, delivery tracking, daily owner reports, review requests, and monthly customer reminders, all without manual chat handling.
+              </p>
+              <div className="flex flex-wrap gap-2 mb-6">
+                <span className="px-3 py-1 bg-pink-50 text-pink-600 text-xs rounded-full border border-pink-200">WhatsApp Bot</span>
+                <span className="px-3 py-1 bg-pink-50 text-pink-600 text-xs rounded-full border border-pink-200">Order Automation</span>
+              </div>
+              <a
+                href="https://www.facebook.com/profile.php?id=61571996063008"
+                target="_blank"
+                rel="noopener noreferrer"
+                className="inline-flex items-center text-pink-600 hover:text-pink-700 text-sm font-semibold transition-colors"
+              >
+                Visit Facebook Page
+                <svg className="w-4 h-4 ml-1" fill="none" stroke="currentColor" viewBox="0 0 24 24" xmlns="http://www.w3.org/2000/svg">
+                  <path strokeLinecap="round" strokeLinejoin="round" strokeWidth="2" d="M10 6H6a2 2 0 00-2 2v10a2 2 0 002 2h10a2 2 0 002-2v-4M14 4h6m0 0v6m0-6L10 14"></path>
+                </svg>
+              </a>
+            </div>
+
+          </div>
+        </div>
+      </section>
+
+
+
+
+
+
+
 
       {/* Let's Connect */}
       <section id="contact" className="py-20 px-6 bg-slate-900">
