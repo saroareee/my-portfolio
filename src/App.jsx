@@ -168,8 +168,20 @@ export default function App() {
   const [countryCode, setCountryCode] = useState('+880'); // ঠিক এখানেই বসিয়ে দাও
 
 
+useEffect(() => {
+    // ১. ব্রাউজারের ডিফল্ট অটো-স্ক্রল বন্ধ করা
+    if ('scrollRestoration' in window.history) {
+      window.history.scrollRestoration = 'manual';
+    }
 
+    // ২. রিফ্রেশ করলে জোর করে পেজের উপরে নিয়ে যাওয়া
+    window.scrollTo(0, 0);
 
+    // ৩. URL থেকে হ্যাশ মুছে ফেলা
+    if (window.location.hash) {
+      window.history.replaceState(null, null, window.location.pathname);
+    }
+  }, []);
  
   // ১. ফেড ইফেক্ট কন্ট্রোল করার জন্য নতুন স্টেট
   const [isFading, setIsFading] = useState(false);
@@ -288,53 +300,37 @@ export default function App() {
           </div>
 
           
-          {/* Desktop Menu */}
-          <div className="hidden md:flex items-center gap-6 text-base font-bold text-white">
-            <a href="#about" onClick={(e) => handleNavClick(e, 'about')} className="hover:text-blue-100 transition">About</a>
-            <a href="#experience" onClick={(e) => handleNavClick(e, 'experience')} className="hover:text-blue-100 transition">Experience</a>
-            <a href="#services" onClick={(e) => handleNavClick(e, 'services')} className="hover:text-blue-100 transition">Services</a>
-            <a href="#techstack" onClick={(e) => handleNavClick(e, 'techstack')} className="hover:text-blue-100 transition">Tech Stack</a>
-            <a href="#projects" onClick={(e) => handleNavClick(e, 'projects')} className="hover:text-blue-100 transition">Projects</a>
-            <a href="#clients" onClick={(e) => handleNavClick(e, 'clients')} className="hover:text-blue-100 transition">Clients</a>
-            <a href="#contact" onClick={(e) => handleNavClick(e, 'contact')} className="hover:text-blue-100 transition">Contact</a>
-            <a href="#order" onClick={(e) => handleNavClick(e, 'order')} className="bg-white hover:bg-slate-100 px-6 py-2 rounded-full text-blue-600 font-bold transition shadow">Order Now</a>
-          </div>
+        {/* Desktop Menu */}
+<div className="hidden md:flex items-center gap-6 text-base font-bold text-white">
+  <a href="javascript:void(0)" onClick={(e) => handleNavClick(e, 'about')} className="hover:text-blue-100 transition">About</a>
+  <a href="javascript:void(0)" onClick={(e) => handleNavClick(e, 'experience')} className="hover:text-blue-100 transition">Experience</a>
+  <a href="javascript:void(0)" onClick={(e) => handleNavClick(e, 'services')} className="hover:text-blue-100 transition">Services</a>
+  <a href="javascript:void(0)" onClick={(e) => handleNavClick(e, 'techstack')} className="hover:text-blue-100 transition">Tech Stack</a>
+  <a href="javascript:void(0)" onClick={(e) => handleNavClick(e, 'projects')} className="hover:text-blue-100 transition">Projects</a>
+  <a href="javascript:void(0)" onClick={(e) => handleNavClick(e, 'clients')} className="hover:text-blue-100 transition">Clients</a>
+  <a href="javascript:void(0)" onClick={(e) => handleNavClick(e, 'contact')} className="hover:text-blue-100 transition">Contact</a>
+  <a href="javascript:void(0)" onClick={(e) => handleNavClick(e, 'order')} className="bg-white hover:bg-slate-100 px-6 py-2 rounded-full text-blue-600 font-bold transition shadow">Order Now</a>
+</div>
 
-          {/* Mobile Hamburger Button */}
-          <button
-            onClick={() => setMobileMenuOpen(!mobileMenuOpen)}
-            className="md:hidden text-white p-2"
-            aria-label="Toggle menu"
-          >
-            <svg className="w-8 h-8" fill="none" stroke="currentColor" viewBox="0 0 24 24">
-              {mobileMenuOpen ? (
-                <path strokeLinecap="round" strokeLinejoin="round" strokeWidth="2" d="M6 18L18 6M6 6l12 12" />
-              ) : (
-                <path strokeLinecap="round" strokeLinejoin="round" strokeWidth="2" d="M4 6h16M4 12h16M4 18h16" />
-              )}
-            </svg>
-          </button>
-        </div>
-
-        {/* Mobile Dropdown Menu */}
-        {mobileMenuOpen && (
-          <div className="md:hidden bg-blue-500 px-6 py-4 flex flex-col gap-4 text-white font-bold shadow-lg">
-            <a href="#about" onClick={(e) => handleNavClick(e, 'about')} className="hover:text-blue-100 transition">About</a>
-            <a href="#experience" onClick={(e) => handleNavClick(e, 'experience')} className="hover:text-blue-100 transition">Experience</a>
-            <a href="#services" onClick={(e) => handleNavClick(e, 'services')} className="hover:text-blue-100 transition">Services</a>
-            <a href="#techstack" onClick={(e) => handleNavClick(e, 'techstack')} className="hover:text-blue-100 transition">Tech Stack</a>
-            <a href="#projects" onClick={(e) => handleNavClick(e, 'projects')} className="hover:text-blue-100 transition">Projects</a>
-            <a href="#clients" onClick={(e) => handleNavClick(e, 'clients')} className="hover:text-blue-100 transition">Clients</a>
-            <a href="#contact" onClick={(e) => handleNavClick(e, 'contact')} className="hover:text-blue-100 transition">Contact</a>
-            <a
-              href="#order"
-              onClick={(e) => handleNavClick(e, 'order')}
-              className="bg-white text-blue-600 px-6 py-2 rounded-full font-bold text-center shadow"
-            >
-              Order Now
-            </a>
-          </div>
-        )}
+{/* Mobile Dropdown Menu */}
+{mobileMenuOpen && (
+  <div className="md:hidden bg-blue-500 px-6 py-4 flex flex-col gap-4 text-white font-bold shadow-lg">
+    <a href="javascript:void(0)" onClick={(e) => handleNavClick(e, 'about')} className="hover:text-blue-100 transition">About</a>
+    <a href="javascript:void(0)" onClick={(e) => handleNavClick(e, 'experience')} className="hover:text-blue-100 transition">Experience</a>
+    <a href="javascript:void(0)" onClick={(e) => handleNavClick(e, 'services')} className="hover:text-blue-100 transition">Services</a>
+    <a href="javascript:void(0)" onClick={(e) => handleNavClick(e, 'techstack')} className="hover:text-blue-100 transition">Tech Stack</a>
+    <a href="javascript:void(0)" onClick={(e) => handleNavClick(e, 'projects')} className="hover:text-blue-100 transition">Projects</a>
+    <a href="javascript:void(0)" onClick={(e) => handleNavClick(e, 'clients')} className="hover:text-blue-100 transition">Clients</a>
+    <a href="javascript:void(0)" onClick={(e) => handleNavClick(e, 'contact')} className="hover:text-blue-100 transition">Contact</a>
+    <a
+      href="javascript:void(0)"
+      onClick={(e) => handleNavClick(e, 'order')}
+      className="bg-white text-blue-600 px-6 py-2 rounded-full font-bold text-center shadow"
+    >
+      Order Now
+    </a>
+  </div>
+)}
       </nav>
 
 <main 
