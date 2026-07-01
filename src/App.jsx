@@ -166,7 +166,31 @@ export default function App() {
   const [formStatus, setFormStatus] = useState('');
   const [mobileMenuOpen, setMobileMenuOpen] = useState(false);
   const [countryCode, setCountryCode] = useState('+880'); // ঠিক এখানেই বসিয়ে দাও
-  const countryCodes = [
+ 
+  // ১. ফেড ইফেক্ট কন্ট্রোল করার জন্য নতুন স্টেট
+  const [isFading, setIsFading] = useState(false);
+
+  // ২. স্মুথ জাম্প এবং ফেড ইফেক্টের ফাংশন
+  const handleNavClick = (e, targetId) => {
+    e.preventDefault();
+    setMobileMenuOpen(false); // মোবাইল মেনু খোলা থাকলে বন্ধ করে দেবে
+    setIsFading(true); // ফেড আউট শুরু
+
+    setTimeout(() => {
+      const targetElement = document.getElementById(targetId);
+      if (targetElement) {
+        targetElement.scrollIntoView({ behavior: 'auto', block: 'start' });
+      }
+      setIsFading(false); // ফেড ইন শুরু
+    }, 280);
+  };
+
+
+
+
+
+
+ const countryCodes = [
     { code: '+880', label: 'BGD' }, { code: '+1', label: 'USA' },
     { code: '+44', label: 'UK' }, { code: '+91', label: 'IND' },
     { code: '+971', label: 'UAE' }, { code: '+966', label: 'KSA' },
@@ -259,16 +283,17 @@ export default function App() {
             />
           </div>
 
+          
           {/* Desktop Menu */}
           <div className="hidden md:flex items-center gap-6 text-base font-bold text-white">
-            <a href="#about" className="hover:text-blue-100 transition">About</a>
-            <a href="#experience" className="hover:text-blue-100 transition">Experience</a>
-            <a href="#services" className="hover:text-blue-100 transition">Services</a>
-            <a href="#techstack" className="hover:text-blue-100 transition">Tech Stack</a>
-            <a href="#projects" className="hover:text-blue-100 transition">Projects</a>
-            <a href="#clients" className="hover:text-blue-100 transition">Clients</a>
-            <a href="#contact" className="hover:text-blue-100 transition">Contact</a>
-            <a href="#order" className="bg-white hover:bg-slate-100 px-6 py-2 rounded-full text-blue-600 font-bold transition shadow">Order Now</a>
+            <a href="#about" onClick={(e) => handleNavClick(e, 'about')} className="hover:text-blue-100 transition">About</a>
+            <a href="#experience" onClick={(e) => handleNavClick(e, 'experience')} className="hover:text-blue-100 transition">Experience</a>
+            <a href="#services" onClick={(e) => handleNavClick(e, 'services')} className="hover:text-blue-100 transition">Services</a>
+            <a href="#techstack" onClick={(e) => handleNavClick(e, 'techstack')} className="hover:text-blue-100 transition">Tech Stack</a>
+            <a href="#projects" onClick={(e) => handleNavClick(e, 'projects')} className="hover:text-blue-100 transition">Projects</a>
+            <a href="#clients" onClick={(e) => handleNavClick(e, 'clients')} className="hover:text-blue-100 transition">Clients</a>
+            <a href="#contact" onClick={(e) => handleNavClick(e, 'contact')} className="hover:text-blue-100 transition">Contact</a>
+            <a href="#order" onClick={(e) => handleNavClick(e, 'order')} className="bg-white hover:bg-slate-100 px-6 py-2 rounded-full text-blue-600 font-bold transition shadow">Order Now</a>
           </div>
 
           {/* Mobile Hamburger Button */}
@@ -290,16 +315,16 @@ export default function App() {
         {/* Mobile Dropdown Menu */}
         {mobileMenuOpen && (
           <div className="md:hidden bg-blue-500 px-6 py-4 flex flex-col gap-4 text-white font-bold shadow-lg">
-            <a href="#about" onClick={() => setMobileMenuOpen(false)} className="hover:text-blue-100 transition">About</a>
-            <a href="#experience" onClick={() => setMobileMenuOpen(false)} className="hover:text-blue-100 transition">Experience</a>
-            <a href="#services" onClick={() => setMobileMenuOpen(false)} className="hover:text-blue-100 transition">Services</a>
-            <a href="#techstack" onClick={() => setMobileMenuOpen(false)} className="hover:text-blue-100 transition">Tech Stack</a>
-            <a href="#projects" onClick={() => setMobileMenuOpen(false)} className="hover:text-blue-100 transition">Projects</a>
-            <a href="#clients" onClick={() => setMobileMenuOpen(false)} className="hover:text-blue-100 transition">Clients</a>
-            <a href="#contact" onClick={() => setMobileMenuOpen(false)} className="hover:text-blue-100 transition">Contact</a>
+            <a href="#about" onClick={(e) => handleNavClick(e, 'about')} className="hover:text-blue-100 transition">About</a>
+            <a href="#experience" onClick={(e) => handleNavClick(e, 'experience')} className="hover:text-blue-100 transition">Experience</a>
+            <a href="#services" onClick={(e) => handleNavClick(e, 'services')} className="hover:text-blue-100 transition">Services</a>
+            <a href="#techstack" onClick={(e) => handleNavClick(e, 'techstack')} className="hover:text-blue-100 transition">Tech Stack</a>
+            <a href="#projects" onClick={(e) => handleNavClick(e, 'projects')} className="hover:text-blue-100 transition">Projects</a>
+            <a href="#clients" onClick={(e) => handleNavClick(e, 'clients')} className="hover:text-blue-100 transition">Clients</a>
+            <a href="#contact" onClick={(e) => handleNavClick(e, 'contact')} className="hover:text-blue-100 transition">Contact</a>
             <a
               href="#order"
-              onClick={() => setMobileMenuOpen(false)}
+              onClick={(e) => handleNavClick(e, 'order')}
               className="bg-white text-blue-600 px-6 py-2 rounded-full font-bold text-center shadow"
             >
               Order Now
@@ -307,6 +332,12 @@ export default function App() {
           </div>
         )}
       </nav>
+
+<main 
+        className={`transition-opacity duration-280 ease-in-out ${
+          isFading ? 'opacity-0' : 'opacity-100'
+        }`}
+      >
 
 {/* Hero Section */}
 <header 
@@ -825,6 +856,7 @@ export default function App() {
         </div>
       </footer>
 
+</main>
 
 
 
