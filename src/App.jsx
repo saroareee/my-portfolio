@@ -1,4 +1,4 @@
-import React, { useState } from 'react';
+import React, { useState, useEffect } from 'react';
 
 const NEXFLOW_EMAIL = "saroareee@gmail.com";
 const NEXFLOW_WHATSAPP = "8801917559574";
@@ -166,6 +166,10 @@ export default function App() {
   const [formStatus, setFormStatus] = useState('');
   const [mobileMenuOpen, setMobileMenuOpen] = useState(false);
   const [countryCode, setCountryCode] = useState('+880'); // ঠিক এখানেই বসিয়ে দাও
+
+
+
+
  
   // ১. ফেড ইফেক্ট কন্ট্রোল করার জন্য নতুন স্টেট
   const [isFading, setIsFading] = useState(false);
