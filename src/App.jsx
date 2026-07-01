@@ -288,50 +288,51 @@ useEffect(() => {
     <div className="bg-slate-900 text-slate-300 min-h-screen">
     
  <nav className="fixed w-full top-0 z-50 bg-blue-400 shadow-lg">
-        <div className="max-w-7xl mx-auto w-full flex justify-between items-center h-20 px-4">
+  <div className="max-w-7xl mx-auto w-full flex justify-between items-center h-20 px-4">
+    
+    {/* Logo */}
+    <div className="flex items-center bg-white rounded-xl px-3 py-1.5 shadow-md">
+      <img
+        src="/logo.png"
+        alt="NexFlow Logo"
+        className="h-12 w-auto object-contain"
+      />
+    </div>
 
-          {/* Logo */}
-          <div className="flex items-center bg-white rounded-xl px-3 py-1.5 shadow-md">
-            <img
-              src="/logo.png"
-              alt="NexFlow Logo"
-              className="h-12 w-auto object-contain"
-            />
-          </div>
+    {/* Desktop Menu */}
+    <div className="hidden md:flex items-center gap-6 text-base font-bold text-white">
+      <a href="javascript:void(0)" onClick={(e) => handleNavClick(e, 'about')} className="hover:text-blue-100 transition">About</a>
+      <a href="javascript:void(0)" onClick={(e) => handleNavClick(e, 'experience')} className="hover:text-blue-100 transition">Experience</a>
+      <a href="javascript:void(0)" onClick={(e) => handleNavClick(e, 'services')} className="hover:text-blue-100 transition">Services</a>
+      <a href="javascript:void(0)" onClick={(e) => handleNavClick(e, 'techstack')} className="hover:text-blue-100 transition">Tech Stack</a>
+      <a href="javascript:void(0)" onClick={(e) => handleNavClick(e, 'projects')} className="hover:text-blue-100 transition">Projects</a>
+      <a href="javascript:void(0)" onClick={(e) => handleNavClick(e, 'clients')} className="hover:text-blue-100 transition">Clients</a>
+      <a href="javascript:void(0)" onClick={(e) => handleNavClick(e, 'contact')} className="hover:text-blue-100 transition">Contact</a>
+      <a href="javascript:void(0)" onClick={(e) => handleNavClick(e, 'order')} className="bg-white hover:bg-slate-100 px-6 py-2 rounded-full text-blue-600 font-bold transition shadow">Order Now</a>
+    </div>
 
-          
-        {/* Desktop Menu */}
-<div className="hidden md:flex items-center gap-6 text-base font-bold text-white">
-  <a href="javascript:void(0)" onClick={(e) => handleNavClick(e, 'about')} className="hover:text-blue-100 transition">About</a>
-  <a href="javascript:void(0)" onClick={(e) => handleNavClick(e, 'experience')} className="hover:text-blue-100 transition">Experience</a>
-  <a href="javascript:void(0)" onClick={(e) => handleNavClick(e, 'services')} className="hover:text-blue-100 transition">Services</a>
-  <a href="javascript:void(0)" onClick={(e) => handleNavClick(e, 'techstack')} className="hover:text-blue-100 transition">Tech Stack</a>
-  <a href="javascript:void(0)" onClick={(e) => handleNavClick(e, 'projects')} className="hover:text-blue-100 transition">Projects</a>
-  <a href="javascript:void(0)" onClick={(e) => handleNavClick(e, 'clients')} className="hover:text-blue-100 transition">Clients</a>
-  <a href="javascript:void(0)" onClick={(e) => handleNavClick(e, 'contact')} className="hover:text-blue-100 transition">Contact</a>
-  <a href="javascript:void(0)" onClick={(e) => handleNavClick(e, 'order')} className="bg-white hover:bg-slate-100 px-6 py-2 rounded-full text-blue-600 font-bold transition shadow">Order Now</a>
-</div>
+    {/* Mobile Dropdown Menu */}
+    {mobileMenuOpen && (
+      <div className="md:hidden bg-blue-500 px-6 py-4 flex flex-col gap-4 text-white font-bold shadow-lg">
+        <a href="javascript:void(0)" onClick={(e) => handleNavClick(e, 'about')} className="hover:text-blue-100 transition">About</a>
+        <a href="javascript:void(0)" onClick={(e) => handleNavClick(e, 'experience')} className="hover:text-blue-100 transition">Experience</a>
+        <a href="javascript:void(0)" onClick={(e) => handleNavClick(e, 'services')} className="hover:text-blue-100 transition">Services</a>
+        <a href="javascript:void(0)" onClick={(e) => handleNavClick(e, 'techstack')} className="hover:text-blue-100 transition">Tech Stack</a>
+        <a href="javascript:void(0)" onClick={(e) => handleNavClick(e, 'projects')} className="hover:text-blue-100 transition">Projects</a>
+        <a href="javascript:void(0)" onClick={(e) => handleNavClick(e, 'clients')} className="hover:text-blue-100 transition">Clients</a>
+        <a href="javascript:void(0)" onClick={(e) => handleNavClick(e, 'contact')} className="hover:text-blue-100 transition">Contact</a>
+        <a
+          href="javascript:void(0)"
+          onClick={(e) => handleNavClick(e, 'order')}
+          className="bg-white text-blue-600 px-6 py-2 rounded-full font-bold text-center shadow"
+        >
+          Order Now
+        </a>
+      </div>
+    )}
 
-{/* Mobile Dropdown Menu */}
-{mobileMenuOpen && (
-  <div className="md:hidden bg-blue-500 px-6 py-4 flex flex-col gap-4 text-white font-bold shadow-lg">
-    <a href="javascript:void(0)" onClick={(e) => handleNavClick(e, 'about')} className="hover:text-blue-100 transition">About</a>
-    <a href="javascript:void(0)" onClick={(e) => handleNavClick(e, 'experience')} className="hover:text-blue-100 transition">Experience</a>
-    <a href="javascript:void(0)" onClick={(e) => handleNavClick(e, 'services')} className="hover:text-blue-100 transition">Services</a>
-    <a href="javascript:void(0)" onClick={(e) => handleNavClick(e, 'techstack')} className="hover:text-blue-100 transition">Tech Stack</a>
-    <a href="javascript:void(0)" onClick={(e) => handleNavClick(e, 'projects')} className="hover:text-blue-100 transition">Projects</a>
-    <a href="javascript:void(0)" onClick={(e) => handleNavClick(e, 'clients')} className="hover:text-blue-100 transition">Clients</a>
-    <a href="javascript:void(0)" onClick={(e) => handleNavClick(e, 'contact')} className="hover:text-blue-100 transition">Contact</a>
-    <a
-      href="javascript:void(0)"
-      onClick={(e) => handleNavClick(e, 'order')}
-      className="bg-white text-blue-600 px-6 py-2 rounded-full font-bold text-center shadow"
-    >
-      Order Now
-    </a>
-  </div>
-)}
-      </nav>
+  </div> {/* এই DIV টি মিসিং ছিল! */}
+</nav>
 
 <main 
         className={`transition-opacity duration-280 ease-in-out ${
