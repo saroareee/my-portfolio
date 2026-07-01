@@ -794,13 +794,23 @@ export default function App() {
                 <input type="email" placeholder="Your Email" className="w-full p-4 bg-slate-900 rounded-xl outline-none border border-slate-700 text-white" value={formData.email} onChange={e => setFormData({...formData, email: e.target.value})} required />
                 
 		<div className="flex gap-2">
+
+ {/* Dropdown container */}
+<div className="relative w-1/3">
   <select 
     value={countryCode} 
     onChange={(e) => setCountryCode(e.target.value)} 
-    className="w-1/3 p-4 bg-slate-900 rounded-xl outline-none border border-slate-700 text-white"
+    className="w-full p-4 pr-12 bg-slate-900 rounded-xl outline-none border border-slate-700 text-white appearance-none cursor-pointer"
   >
     {countryCodes.map(c => <option key={c.code} value={c.code}>{c.label} {c.code}</option>)}
   </select>
+  {/* Custom Arrow Icon */}
+  <div className="absolute right-3 top-1/2 transform -translate-y-1/2 pointer-events-none text-slate-400">
+    <svg className="w-4 h-4" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path strokeLinecap="round" strokeLinejoin="round" strokeWidth="2" d="M19 9l-7 7-7-7"></path></svg>
+  </div>
+</div>
+
+
   <input 
     type="tel" 
     placeholder="Phone Number" 
