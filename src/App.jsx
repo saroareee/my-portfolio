@@ -165,22 +165,72 @@ export default function App() {
   const [formData, setFormData] = useState({ name: '', email: '', phone: '', project: '' });
   const [formStatus, setFormStatus] = useState('');
   const [mobileMenuOpen, setMobileMenuOpen] = useState(false);
+  const [countryCode, setCountryCode] = useState('+880'); // ঠিক এখানেই বসিয়ে দাও
+  const countryCodes = [
+    { code: '+880', label: 'BGD' }, { code: '+1', label: 'USA' },
+    { code: '+44', label: 'UK' }, { code: '+91', label: 'IND' },
+    { code: '+971', label: 'UAE' }, { code: '+966', label: 'KSA' },
+    { code: '+974', label: 'QAT' }, { code: '+965', label: 'KWT' },
+    { code: '+972', label: 'ISR' }, { code: '+90', label: 'TUR' },
+    { code: '+61', label: 'AUS' }, { code: '+64', label: 'NZL' },
+    { code: '+86', label: 'CHN' }, { code: '+81', label: 'JPN' },
+    { code: '+82', label: 'KOR' }, { code: '+65', label: 'SGP' },
+    { code: '+60', label: 'MYS' }, { code: '+852', label: 'HKG' },
+    { code: '+886', label: 'TWN' }, { code: '+66', label: 'THA' },
+    { code: '+49', label: 'GER' }, { code: '+33', label: 'FRA' },
+    { code: '+39', label: 'ITA' }, { code: '+34', label: 'ESP' },
+    { code: '+31', label: 'NED' }, { code: '+46', label: 'SWE' },
+    { code: '+47', label: 'NOR' }, { code: '+45', label: 'DEN' },
+    { code: '+358', label: 'FIN' }, { code: '+32', label: 'BEL' },
+    { code: '+41', label: 'SUI' }, { code: '+43', label: 'AUT' },
+    { code: '+353', label: 'IRL' }, { code: '+351', label: 'POR' },
+    { code: '+30', label: 'GRE' }, { code: '+48', label: 'POL' },
+    { code: '+420', label: 'CZE' }, { code: '+36', label: 'HUN' },
+    { code: '+55', label: 'BRA' }, { code: '+27', label: 'RSA' },
+    { code: '+7', label: 'RUS' }
+  ];
 
   const handleOrderSubmit = async (e) => {
     e.preventDefault();
+
+    // ১. ফোন নাম্বার ভ্যালিডেশন (শুধু ডিজিট কি না চেক করা)
+    const phoneRegex = /^\d{7,15}$/;
+    if (!phoneRegex.test(formData.phone)) {
+       alert("Please enter a valid phone number (digits only).");
+       return; // নাম্বার ভুল হলে এখান থেকেই থেমে যাবে
+    }
+
     setFormStatus('sending');
     try {
-      const webhookUrl = 'https://parchment-outflank-pessimism.ngrok-free.dev/webhook/portfolio-contact';
+      const webhookUrl = 'https://391-677.n8n-3.dignityhost.com/webhook/new-order';
+      
       const response = await fetch(webhookUrl, {
         method: 'POST',
         headers: { 'Content-Type': 'application/json' },
-        body: JSON.stringify(formData)
+        // ২. এখানেই কান্ট্রি কোড + ফোন নাম্বার যোগ করে পাঠানো হচ্ছে
+        body: JSON.stringify({ 
+           ...formData, 
+           phone: countryCode + formData.phone 
+        })
       });
+
       if (response.ok) {
         setFormStatus('success');
         setFormData({ name: '', email: '', phone: '', project: '' });
+        
+        // বাটন রিসেট লজিক
+        setTimeout(() => {
+          setFormStatus(''); 
+        }, 3000);
+
+      } else {
+        setFormStatus('error');
+        setTimeout(() => setFormStatus(''), 3000);
       }
-    } catch (e) { setFormStatus('error'); }
+    } catch (e) { 
+        setFormStatus('error');
+        setTimeout(() => setFormStatus(''), 3000);
+    }
   };
 
   const projects = [
@@ -711,7 +761,26 @@ export default function App() {
               <form onSubmit={handleOrderSubmit} className="space-y-4">
                 <input type="text" placeholder="Your Name" className="w-full p-4 bg-slate-900 rounded-xl outline-none border border-slate-700 text-white" value={formData.name} onChange={e => setFormData({...formData, name: e.target.value})} required />
                 <input type="email" placeholder="Your Email" className="w-full p-4 bg-slate-900 rounded-xl outline-none border border-slate-700 text-white" value={formData.email} onChange={e => setFormData({...formData, email: e.target.value})} required />
-                <input type="tel" placeholder="Your Phone Number" className="w-full p-4 bg-slate-900 rounded-xl outline-none border border-slate-700 text-white" value={formData.phone} onChange={e => setFormData({...formData, phone: e.target.value})} required />
+                
+		<div className="flex gap-2">
+  <select 
+    value={countryCode} 
+    onChange={(e) => setCountryCode(e.target.value)} 
+    className="w-1/3 p-4 bg-slate-900 rounded-xl outline-none border border-slate-700 text-white"
+  >
+    {countryCodes.map(c => <option key={c.code} value={c.code}>{c.label} {c.code}</option>)}
+  </select>
+  <input 
+    type="tel" 
+    placeholder="Phone Number" 
+    className="w-2/3 p-4 bg-slate-900 rounded-xl outline-none border border-slate-700 text-white" 
+    value={formData.phone} 
+    onChange={e => setFormData({...formData, phone: e.target.value})} 
+    required 
+  />
+</div>
+
+
                 <textarea placeholder="Your Project" className="w-full p-4 bg-slate-900 rounded-xl outline-none border border-slate-700 text-white h-32" value={formData.project} onChange={e => setFormData({...formData, project: e.target.value})} required />
                 <button type="submit" disabled={formStatus === 'sending'} className="w-full py-4 bg-blue-600 text-white rounded-xl font-bold hover:bg-blue-700 disabled:opacity-60 transition">
                   {formStatus === 'sending' ? 'Sending...' : formStatus === 'success' ? 'Order Received' : formStatus === 'error' ? 'Something went wrong, try again' : 'Submit Order'}
